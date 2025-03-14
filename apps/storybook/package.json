@@ -1,7 +1,6 @@
 {
-  "name": "storybook",
+  "name": "@joyfourl/ui-storybook",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "lint": "eslint .",
