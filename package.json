@@ -9,7 +9,8 @@
     "clean": "pnpx rimraf --glob **/node_modules --glob **/dist",
     "clean:dist": "pnpx rimraf --glob **/dist",
     "changesets": "pnpm changeset",
-    "version": "pnpm changeset version"
+    "version": "pnpm changeset version",
+    "ci:publish": "pnpm publish -r"
   },
   "keywords": [],
   "author": "",
