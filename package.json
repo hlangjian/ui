@@ -1,0 +1,19 @@
+{
+  "name": "root",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "storybook": "turbo storybook",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "pnpx rimraf --glob **/node_modules --glob **/dist",
+    "clean:dist": "pnpx rimraf --glob **/dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.4.4"
+  },
+  "packageManager": "pnpm@10.6.3"
+}

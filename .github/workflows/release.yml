@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.x
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create Release
+        uses: changesets/action@v1
+        with:
+          version: pnpm changeset version
+          commit: "chore: release packages"
+          title: "chore: release packages"
+          publish: pnpm -r publish --access public --no-git-checks
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE_TOKEN }}
+
+      - name: Build Packages
+        run: pnpm turbo run build --filter=utils...
+
+      - name: Publish Packages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: pnpm changeset publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE_TOKEN }}
+        with:
+          tag_name: ${{ steps.changesets.outputs.tag }}
+          release_name: ${{ steps.changesets.outputs.releaseNotes }}
