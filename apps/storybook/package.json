@@ -1,5 +1,5 @@
 {
-  "name": "@joyfourl/ui-storybook",
+  "name": "ui-storybook",
   "private": true,
   "type": "module",
   "scripts": {
