@@ -3,9 +3,6 @@
   "type": "module",
   "sideEffects": false,
   "version": "0.0.1",
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch"
