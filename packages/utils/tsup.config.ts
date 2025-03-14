@@ -6,5 +6,5 @@ export default defineConfig({
     dts: true,
     clean: true,
     publicDir: true,
-    entry: ['barrel.ts']
+    entry: ['index.ts']
 })

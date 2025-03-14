@@ -7,6 +7,10 @@ on:
 
 jobs:
   release:
+    if: github.repository == 'hlangjian/ui'
+    permissions:
+      contents: write
+      pull-requests: write
     name: Release
     runs-on: ubuntu-latest
 
@@ -28,24 +32,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
       - name: Create Release
         uses: changesets/action@v1
-        with:
-          version: pnpm changeset version
-          commit: "chore: release packages"
-          title: "chore: release packages"
-          publish: pnpm -r publish --access public --no-git-checks
+        id: changesets
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Packages
-        run: pnpm turbo run build --filter=utils...
+        run: pnpm turbo run build
 
       - name: Publish Packages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -53,10 +47,14 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Get latest tag
+        id: get_tag
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.changesets.outputs.tag }}
-          release_name: ${{ steps.changesets.outputs.releaseNotes }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}

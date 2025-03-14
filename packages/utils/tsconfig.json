@@ -16,5 +16,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["src", ".storybook", "barrel.ts"]
+  "include": ["src", ".storybook", "index.ts"]
 }
