@@ -10,7 +10,7 @@
     "clean:dist": "pnpx rimraf --glob **/dist",
     "changesets": "pnpm changeset",
     "version": "pnpm changeset version",
-    "ci:publish": "pnpm publish -r"
+    "ci:publish": "turbo run build lint test && changeset version && changeset publish"
   },
   "keywords": [],
   "author": "",
