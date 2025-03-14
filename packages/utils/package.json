@@ -2,7 +2,7 @@
   "name": "@joyfourl/utils",
   "type": "module",
   "sideEffects": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch"
