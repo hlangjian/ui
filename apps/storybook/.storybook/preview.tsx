@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react'
-import "./preview.tailwind.css"
+import { QueryProvider } from '@joyfourl/ui'
+import "./preview.css"
+import React from 'react';
 
 const preview: Preview = {
   parameters: {
@@ -10,6 +12,11 @@ const preview: Preview = {
       },
     },
   },
+  decorators: Story => (
+    <QueryProvider>
+      <Story />
+    </QueryProvider>
+  )
 };
 
 export default preview;

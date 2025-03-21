@@ -6,9 +6,14 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 --https --ssl-ca .storybook/certs/rootCA.pem --ssl-cert .storybook/certs/cert.pem --ssl-key .storybook/certs/key.pem",
+    "dev": "storybook dev -p 6006 --https --ssl-ca .storybook/certs/rootCA.pem --ssl-cert .storybook/certs/cert.pem --ssl-key .storybook/certs/key.pem",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@joyfourl/ui": "workspace:*",
+    "@ngneat/falso": "^7.3.0",
+    "es-toolkit": "^1.33.0",
+    "lucide-react": "^0.482.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

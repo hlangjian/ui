@@ -1,0 +1,8 @@
+@utility pagination-button {
+  @apply rounded box-content min-w-8 hover:bg-blue-100 aria-selected:bg-blue-500 aria-selected:text-blue-50 px-1 py-0.5 select-none;
+  @apply transition;
+}
+
+@utility pagination-trigger {
+  @apply rounded px-2 py-1 select-none hover:bg-blue-500 hover:text-blue-50 transition;
+}
