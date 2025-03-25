@@ -9,6 +9,15 @@
     "**/.turbo": true
   },
   "files.associations": {
-    "*.tailwind.css": "tailwindcss"
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    "\"@apply ([^\"]*)\"",
+    ["tv\\({([^\\)]*)}\\)", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["tw\\(([^\\)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"]
+  ],
+  "tailwindCSS.experimental.configFile": "apps/storybook/.storybook/preview.css",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
   }
 }
