@@ -16,5 +16,8 @@
     ["tv\\({([^\\)]*)}\\)", "[\"'`]([^\"'`]*)[\"'`]"],
     ["tw\\(([^\\)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"]
   ],
-  "tailwindCSS.experimental.configFile": "apps/storybook/.storybook/preview.css"
+  "tailwindCSS.experimental.configFile": "apps/storybook/.storybook/preview.css",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  }
 }
