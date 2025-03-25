@@ -7,5 +7,5 @@ export default defineConfig({
     clean: true,
     publicDir: true,
     keepNames: true,
-    entry: ['index.ts']
+    entry: ['./src/index.ts']
 })
